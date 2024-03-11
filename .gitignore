@@ -75,4 +75,4 @@ crashlytics-build.properties
 Thumbs.db          # 윈도우 OS에서 썸네일 캐시를 저장하기 위해 만드는 시스템파일
 
 # 리소스 폴더
-/Assets/Resource
+/Assets/Resources
