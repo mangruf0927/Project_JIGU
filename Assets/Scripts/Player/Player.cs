@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
         rigid.velocity = inputVec;
         */
 
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime; // fixedDeltaTime : 물리 프레임 하나가 소비한 시간
-        rigid.MovePosition(rigid.position + nextVec);
+        Vector2 nextVec = inputVec.normalized * speed;
+        rigid.AddForce(nextVec, ForceMode2D.Impulse);
     }
 
     void LateUpdate()
