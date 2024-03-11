@@ -21,7 +21,7 @@ public class PlayerMoveState : IPlayerState
 
     public void FixedUpdate()
     {
-
+        player.Move();
     }
 
     public void OnEnter()
@@ -31,6 +31,6 @@ public class PlayerMoveState : IPlayerState
 
     public void OnExit()
     {
-
+        player.rigid.velocity = new Vector2(0, 0);
     }
 }

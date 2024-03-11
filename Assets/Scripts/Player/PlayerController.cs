@@ -7,13 +7,18 @@ public class PlayerController : MonoBehaviour
     public PlayerStateMachine stateMachine;
     public Animator animatior;
     public Rigidbody2D rigid;
+    public SpriteRenderer sprite;
 
     [Header("이동 속도")]
     public float moveSpeed;
-    public float maxSpeed;
+    public float maxMoveSpeed;
 
     [Header("이동 방향")]
     public Vector2 moveDirection;
+
+    [Header("대시 속도")]
+    public float dashSpeed;
+    public float maxDashSpeed;
 
     private void Start()
     {
@@ -22,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(stateMachine.curState);
+        Debug.Log(stateMachine.curState);
         if (stateMachine.curState != null)
             stateMachine.curState.Update();
     }
@@ -41,9 +46,9 @@ public class PlayerController : MonoBehaviour
 
     public void SetMoveSpeed()
     {
-        if (Mathf.Abs(rigid.velocity.x) > maxSpeed || Mathf.Abs(rigid.velocity.y) > maxSpeed)
+        if (Mathf.Abs(rigid.velocity.x) > maxMoveSpeed || Mathf.Abs(rigid.velocity.y) > maxMoveSpeed)
         {
-            rigid.velocity = new Vector2(moveDirection.x * maxSpeed, moveDirection.y * maxSpeed);
+            rigid.velocity = new Vector2(moveDirection.x * maxMoveSpeed, moveDirection.y * maxMoveSpeed);
         }
     }
 
@@ -51,5 +56,11 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = direction;
         moveDirection.Normalize();
+
+        if (moveDirection.x != 0)
+        {
+            sprite.flipX = moveDirection.x < 0;
+        }
     }
 }
+
