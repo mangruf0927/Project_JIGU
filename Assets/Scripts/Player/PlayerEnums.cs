@@ -2,6 +2,6 @@ public enum PlayerEnums
 {
     IDLE,
     MOVE,
-    DASH,
+    DODGE,
     DEAD
 }
