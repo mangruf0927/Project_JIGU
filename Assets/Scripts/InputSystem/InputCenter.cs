@@ -19,16 +19,16 @@ public class InputCenter : MonoBehaviour
 
     void ChangeIdleState()
     {
-        stateMachine.ChangeState(PlayerEnums.IDLE);
+        stateMachine.ChangeInputState(PlayerStateEnums.IDLE);
     }
     void ChangeMoveState()
     {
-        stateMachine.ChangeState(PlayerEnums.MOVE);
+        stateMachine.ChangeInputState(PlayerStateEnums.MOVE);
     }
 
     void ChangeDodgeState()
     {
-        stateMachine.ChangeState(PlayerEnums.DODGE);
+        stateMachine.ChangeInputState(PlayerStateEnums.DODGE);
     }
 
     void CheckDirection(Vector2 dir)

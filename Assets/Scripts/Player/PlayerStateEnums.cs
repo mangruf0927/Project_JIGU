@@ -1,4 +1,4 @@
-public enum PlayerEnums
+public enum PlayerStateEnums
 {
     IDLE,
     MOVE,

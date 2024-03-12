@@ -14,6 +14,16 @@ public class PlayerIdleState : IPlayerState
         player = stateMachine.controller;
     }
 
+    public HashSet<PlayerStateEnums> inputHash { get; } = new HashSet<PlayerStateEnums>()
+    {
+        PlayerStateEnums.MOVE,
+        PlayerStateEnums.DODGE
+    };
+
+    public HashSet<PlayerStateEnums> logicHash { get; } = new HashSet<PlayerStateEnums>()
+    {
+    };
+
     public void Update()
     {
 
@@ -26,7 +36,7 @@ public class PlayerIdleState : IPlayerState
 
     public void OnEnter()
     {
-        player.animatior.Play("Idle");
+        player.animator.Play("Idle");
     }
 
     public void OnExit()

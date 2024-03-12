@@ -731,12 +731,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateMachine: {fileID: 1734069714}
-  animatior: {fileID: 1734069713}
+  animator: {fileID: 1734069713}
   rigid: {fileID: 1734069709}
   sprite: {fileID: 1734069710}
   moveSpeed: 3
-  maxSpeed: 5
+  maxMoveSpeed: 5
   moveDirection: {x: 0, y: 0}
+  isDodge: 0
+  dodgeSpeed: 100
+  maxDodgeSpeed: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

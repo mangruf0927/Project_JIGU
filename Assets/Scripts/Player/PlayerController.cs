@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerStateMachine stateMachine;
-    public Animator animatior;
+    public Animator animator;
     public Rigidbody2D rigid;
     public SpriteRenderer sprite;
 
@@ -17,8 +17,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 moveDirection;
 
     [Header("대시 속도")]
-    public float dashSpeed;
-    public float maxDashSpeed;
+    public bool isDodge;
+    public float dodgeSpeed;
+    public float maxDodgeSpeed;
 
     private void Start()
     {
@@ -37,6 +38,16 @@ public class PlayerController : MonoBehaviour
         if (stateMachine.curState != null)
             stateMachine.curState.FixedUpdate();
     }
+    public void SetMoveDirection(Vector2 direction)
+    {
+        moveDirection = direction;
+        moveDirection.Normalize();
+
+        if (moveDirection.x != 0)
+        {
+            sprite.flipX = moveDirection.x < 0;
+        }
+    }
 
     public void Move()
     {
@@ -52,15 +63,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetMoveDirection(Vector2 direction)
+    public void Dodge()
     {
-        moveDirection = direction;
-        moveDirection.Normalize();
+        rigid.velocity = moveDirection * dodgeSpeed;
+        SetDodgeSpeed();
+    }
 
-        if (moveDirection.x != 0)
+    public void SetDodgeSpeed()
+    {
+        if (Mathf.Abs(rigid.velocity.x) > maxDodgeSpeed || Mathf.Abs(rigid.velocity.y) > maxDodgeSpeed)
         {
-            sprite.flipX = moveDirection.x < 0;
+            rigid.velocity = new Vector2(moveDirection.x * maxDodgeSpeed, moveDirection.y * maxDodgeSpeed);
         }
     }
+
 }
 
