@@ -25,7 +25,7 @@ public class PlayerDodgeState : IPlayerState
 
     public void Update()
     {
-        if (player.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+        if (player.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             stateMachine.ChangeLogicState(PlayerStateEnums.IDLE);
             return;
@@ -46,5 +46,6 @@ public class PlayerDodgeState : IPlayerState
     public void OnExit()
     {
         player.isDodge = false;
+        player.rigid.velocity = new Vector2(0, 0);
     }
 }

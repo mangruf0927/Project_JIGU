@@ -21,14 +21,18 @@ public class PlayerController : MonoBehaviour
     public float dodgeSpeed;
     public float maxDodgeSpeed;
 
+    [Header("대시 방향")]
+    public Vector2 dodgeDirection;
+
     private void Start()
     {
-        
+        dodgeDirection = new Vector2(1, 0);
     }
 
     private void Update()
     {
         Debug.Log(stateMachine.curState);
+        Debug.Log(dodgeDirection);
         if (stateMachine.curState != null)
             stateMachine.curState.Update();
     }
@@ -49,6 +53,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetDodgeDirection(Vector2 direction)
+    {
+        dodgeDirection = direction;
+        dodgeDirection.Normalize();
+    }
+
     public void Move()
     {
         rigid.AddForce(moveDirection * moveSpeed, ForceMode2D.Impulse);
@@ -64,8 +74,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Dodge()
-    {
-        rigid.velocity = moveDirection * dodgeSpeed;
+    { 
+        rigid.velocity = dodgeDirection * dodgeSpeed;
         SetDodgeSpeed();
     }
 
@@ -73,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Mathf.Abs(rigid.velocity.x) > maxDodgeSpeed || Mathf.Abs(rigid.velocity.y) > maxDodgeSpeed)
         {
-            rigid.velocity = new Vector2(moveDirection.x * maxDodgeSpeed, moveDirection.y * maxDodgeSpeed);
+            rigid.velocity = new Vector2(dodgeDirection.x * maxDodgeSpeed, dodgeDirection.y * maxDodgeSpeed);
         }
     }
 

@@ -15,6 +15,7 @@ public class InputCenter : MonoBehaviour
         inputHandler.OnPlayerDodge += ChangeDodgeState;
 
         inputHandler.OnPlayerCheckDirection += CheckDirection;
+        inputHandler.OnPlayerDodgeDirection += CheckDodgeDirection;
     }
 
     void ChangeIdleState()
@@ -34,5 +35,10 @@ public class InputCenter : MonoBehaviour
     void CheckDirection(Vector2 dir)
     {
         controller.SetMoveDirection(dir);
+    }
+
+    void CheckDodgeDirection(Vector2 dir)
+    {
+        controller.SetDodgeDirection(dir);
     }
 }
